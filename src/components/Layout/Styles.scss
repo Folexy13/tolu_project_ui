@@ -1,0 +1,161 @@
+.dashboard{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    position: relative;
+    .nav{
+            height: 100vh;
+                left: 0;
+                top: 0;
+                z-index: 99;
+                // padding: 20px;
+                padding-bottom: 50px;
+                position: fixed;
+                width: 320px;
+                z-index: 999;
+                // overflow: hidden;
+                overflow-y: auto;
+                transition: .3s all ease-in-out;
+                background: #fff;
+                box-shadow: 0 12px 30px rgb(80 143 244 / 10%);
+                .logo{
+                    display: flex;
+                    gap: 0px;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 60px;
+                    img{
+                        border-radius: 50%;
+                    }
+                    h1 {
+                            text-align: center;
+                            font-size: 24px;
+                        }
+                }
+                
+                ul{
+                        margin: 0;
+                            padding: 0;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            height: 500px;
+                            margin-top:120px;
+                        
+                    li{
+                        list-style: none;
+                            margin: 30px 0;
+                            margin-left: 30px;
+                            a{
+                                font-size: 18px;
+                                    font-weight: 600;
+                                    color: #2e4765;
+                                    padding: 15px 25px 15px 30px;
+                                    background: #fff;
+                                    transition: .3s;
+                                    position: relative;
+                                    z-index: 0;
+                                    display: grid;
+                                    grid-template-columns: 26px auto;
+                                    grid-gap: 15px;
+                                    align-items: center;
+                                    position: relative;
+                                    background: 0 0;
+                                    
+                            }
+                        &.active{
+                            &>a{
+                                background: brown;
+                                    border-radius: 30px;
+                                    color: #fff;
+                                    border-radius: 18px;
+
+                                    &::before {
+                                            opacity: 1;
+                                            width: 6px;
+                                            visibility: visible;
+                                            content: '';
+                                            position: absolute;
+                                            left: 0;
+                                            top: 0;
+                                            background: brown;
+                                            height: 100%;
+                                            width: 10px;
+                                            border-radius: 0 16px 16px 0;
+                                            left: -30px;
+                                        }
+                            }
+                                
+
+                        }
+                    }
+                }
+
+    }
+    .section{
+        color: #002;
+        background: #949ca336;
+        left: 320px;
+            width: calc(100vw - 320px);
+            padding: 50px;
+            padding-top: 0;
+            transition: .5s;
+            position: fixed;
+            min-height: 100vh;
+            padding-bottom: 90px;
+            overflow: hidden;
+            .other{
+                display: flex;
+                gap: 100px;
+                align-items: center;
+                margin-right: 50px;
+                img {
+                        border-radius: 50%;
+                        cursor: pointer;
+                    }
+    .icon {
+        display: flex;
+        gap: 20px;
+
+        svg {
+            padding: 10px;
+            border-radius: 10px;
+            background: #fff;
+
+            cursor: pointer;
+        }
+    }
+            }
+            
+            .search_page{
+                width: calc(100vw - 420px);
+                display: flex;
+                z-index: 1000;
+                position: relative;
+                justify-content: space-between;
+                align-items: center;
+                    border-bottom: 2px solid #bcbcbc;
+                    padding: 30px 0;
+                    .search{
+                    margin-left: 50px;
+                    svg{
+                        cursor: pointer;
+                    }
+                    input {
+                            width: 50%;
+                            border: 0;
+                            outline: 0;
+                            border-left: 2px solid #bcbcbc;
+                            padding: 10px 30px;
+                            margin-left: 10px;
+                            background: transparent;
+                        }
+                    }
+               
+            }
+    }
+    .container{
+        position: absolute;
+        top: 179px;
+        left: 368px;
+    }
+}

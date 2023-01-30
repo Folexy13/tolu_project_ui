@@ -1,0 +1,67 @@
+.main{
+    position: relative;
+    color: #fff;
+    .herosection {
+            height: calc(100vh - 151px);
+            background: url(../../assets/image/img.jpg) no-repeat;
+            background-size: 110% 110%;
+            background-position: center center;
+            animation: gradient 10s infinite alternate;
+            h1{
+                margin: 0;
+                padding: 200px;
+                z-index: 300;
+                text-decoration: underline;
+                font-weight: 900;
+                font-size:44px;
+                position: absolute;
+                font-family: 'Sevillana',cursive;
+            }
+            p{
+                position: absolute;
+                padding: 300px 200px;
+                margin: 0;
+                z-index: 300;
+                width: 450px;
+                font-weight: 900;
+                font-size: 64px;
+                img{
+                    position: absolute;
+                     right: 185px;
+                    top: 344px;
+                }
+            }
+            .sect{
+            position: absolute;
+                padding: 460px 200px;
+                margin: 0;
+                z-index: 300;
+                width: 450px;
+                font-weight: 900;
+                font-size: 24px;
+            }
+        }
+    .overlay{
+        position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(51,
+                75,
+                53, 0.65);
+            content: "";
+            z-index: 2;
+    }
+}
+
+
+@keyframes gradient {
+    0% {
+            background-size: 110% 110%;
+        }
+    
+     100% {
+            background-size: 100% 100%;
+        }
+}

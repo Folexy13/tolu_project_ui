@@ -1,0 +1,23 @@
+.about{
+    h1{
+        text-align: center;
+        margin: 50px 0;
+        color:2d442f ;
+    }
+    main{
+        @media (min-width:720px) {
+                width: calc(60% - 100px);
+            }
+            color: #fff;
+            width: calc(90% - 100px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            padding: 0 50px;
+            border-radius: 8px;
+            height: 400px;
+            background: #2d442f;
+            margin:50px auto 100px auto;
+    }
+}
