@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Styles.scss";
 import { RxPlus } from "react-icons/rx";
 import {
@@ -9,6 +9,7 @@ import {
   Table,
 } from "../../../components";
 import { useState } from "react";
+import { getStoredAuthToken } from "../../../utils";
 const chartdata = [
   {
     created_at__date: "12/26/2022",
@@ -67,6 +68,10 @@ const Dashboard = () => {
   const handleShow = () => {
     setShow(!show);
   };
+  useEffect(() => {
+    getStoredAuthToken();
+    console.log("yippie");
+  }, []);
   return (
     <DashboardLayout>
       <div className="main">
