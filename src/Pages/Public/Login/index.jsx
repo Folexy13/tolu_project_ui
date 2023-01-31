@@ -24,7 +24,7 @@ const Login = () => {
       console.log(res.status);
       if (res.status) {
         toast.success(res.message);
-        navigate("/");
+        window.location.replace("/");
       } else {
         toast.error(res.message);
         setLoading(false);

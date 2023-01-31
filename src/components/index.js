@@ -8,6 +8,7 @@ import Card from "./Card";
 import DashboardLayout from "./Layout/DashboardLayout";
 import { Chart } from "./Chart";
 import Table from "./Table";
+import EmptyState from "./EmptyState";
 import Modal from "./Modal/Index";
 
 export {
@@ -21,5 +22,6 @@ export {
   Table,
   Chart,
   Modal,
+  EmptyState,
   DBNavbar,
 };

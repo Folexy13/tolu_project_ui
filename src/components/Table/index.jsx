@@ -1,31 +1,37 @@
 import React from "react";
 import "./Styles.scss";
+import EmptyState from "../EmptyState";
 
-const Table = ({ width, headData, bodyData, type }) => {
+const Table = ({ width, headData, bodyData, type, isEmpty }) => {
   return (
-    <table class="styled-table" style={{ width }}>
-      <thead>
-        <tr>
-          {headData.map((el, i) => {
-            return <th key={i}>{el}</th>;
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        {bodyData.map((el, i) => {
-          return (
-            <tr key={i}>
-              <td>{el.stockItem}</td>
-              <td>{el.quantity}</td>
-              <td>{el.description}</td>
-              <td>{el.collectorName}</td>
-              <td>{el.issuerName}</td>
-              <td>{el.date}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <>
+      <table class="styled-table" style={{ width }}>
+        <thead>
+          <tr>
+            {headData.map((el, i) => {
+              return <th key={i}>{el}</th>;
+            })}
+          </tr>
+        </thead>
+        {!isEmpty && (
+          <tbody>
+            {bodyData.map((el, i) => {
+              return (
+                <tr key={i}>
+                  <td>{el.stockItem}</td>
+                  <td>{el.quantity}</td>
+                  <td>{el.description}</td>
+                  <td>{el.collectorName}</td>
+                  <td>{el.issuerName}</td>
+                  <td>{el.date}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        )}
+      </table>
+      {isEmpty && <EmptyState data={"data"} />}
+    </>
   );
 };
 

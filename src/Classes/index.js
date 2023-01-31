@@ -58,6 +58,14 @@ class USER {
       return error;
     }
   };
+  user_add_stock = async (data) => {
+    try {
+      const response = await api.post(`/add-stock`, data);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
 }
 
 const userOBJ = new USER();
