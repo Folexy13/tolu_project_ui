@@ -21,7 +21,7 @@ const AppRoute = () => {
       <Routes>
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.REGISTER} element={<Register />} />
-        <Route path={ROUTES.HOME} element={<Dashboard />} />
+        <Route path={ROUTES.HOME} element={<Login />} />
         <Route element={<ProtectedPages />}>
           <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
           <Route path={ROUTES.RECORD} element={<Record />} />

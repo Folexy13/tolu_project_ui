@@ -5,8 +5,7 @@ import bgImage from "../../../assets/image/login2.webp";
 import { useState } from "react";
 import UserObj from "../../../Classes";
 import { toast } from "react-toastify";
-import { AiOutlineLoading } from "react-icons/ai";
-import { getStoredAuthToken } from "../../../utils";
+import { Spinner } from "../../../components";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,7 +23,7 @@ const Login = () => {
       console.log(res.status);
       if (res.status) {
         toast.success(res.message);
-        window.location.replace("/");
+        window.location.replace("/dashboard");
       } else {
         toast.error(res.message);
         setLoading(false);
@@ -59,7 +58,7 @@ const Login = () => {
           </div>
           <div className="form_control">
             <button disabled={loading}>
-              {loading ? <AiOutlineLoading /> : "Login"}
+              {loading ? <Spinner isLoading={loading} /> : "Login"}
             </button>
           </div>
           Don't have an account? <Link to="/register">Register</Link>

@@ -36,7 +36,7 @@ const DBNavbar = ({ setActiveBar }) => {
           onClick={() => {
             setActive("record");
             setActiveBar("record");
-            nav(ROUTES.RECORD);
+            // nav(ROUTES.RECORD);
           }}
         >
           <Link to={ROUTES.RECORD}>
@@ -59,7 +59,7 @@ const DBNavbar = ({ setActiveBar }) => {
               size={25}
               color={active === "inventory" ? "#fff" : ""}
             />{" "}
-            Inventory
+            Reorder Level
           </Link>
         </li>
         <li

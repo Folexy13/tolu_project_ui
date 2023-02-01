@@ -66,6 +66,33 @@ class USER {
       return error;
     }
   };
+
+  get_all_users = async (page) => {
+    try {
+      const response = await api.get(`/get/all-users?page=${page}`);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  get_all_records = async (page) => {
+    try {
+      const response = await api.get(`/get/all-records?page=${page}`);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  get_all_stocks = async (page) => {
+    try {
+      const response = await api.get(`/get/all-stocks?page=${page}`);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
 }
 
 const userOBJ = new USER();

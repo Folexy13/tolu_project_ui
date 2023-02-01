@@ -10,6 +10,7 @@ import { Chart } from "./Chart";
 import Table from "./Table";
 import EmptyState from "./EmptyState";
 import Modal from "./Modal/Index";
+import Spinner from "./Spinner";
 
 export {
   Navbar,
@@ -24,4 +25,5 @@ export {
   Modal,
   EmptyState,
   DBNavbar,
+  Spinner,
 };

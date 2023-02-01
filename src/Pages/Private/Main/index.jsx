@@ -6,6 +6,7 @@ import {
   Chart,
   DashboardLayout,
   Modal,
+  Spinner,
   Table,
 } from "../../../components";
 import { useState } from "react";
@@ -90,6 +91,11 @@ const Dashboard = () => {
       if (res.status) {
         toast.success(res.message);
         setShow(!show);
+        setStockName("");
+        setQuantity("");
+        setSize("");
+        setType("");
+        setLocation("");
       } else {
         toast.error(res.message);
         setLoading(false);
@@ -162,7 +168,9 @@ const Dashboard = () => {
               />
             </div>
             <div className="form-control">
-              <button>Add Stock</button>
+              <button disabled={loading}>
+                {loading ? <Spinner isLoading={loading} /> : "Add Stock"}
+              </button>
             </div>
           </form>
         </Modal>

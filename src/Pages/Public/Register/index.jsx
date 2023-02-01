@@ -6,6 +6,7 @@ import { IoChevronBackSharp } from "react-icons/io5";
 import { useState } from "react";
 import userOBJ from "../../../Classes";
 import { toast } from "react-toastify";
+import { Spinner } from "../../../components";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -94,7 +95,9 @@ const Register = () => {
             />
           </div>
           <div className="form_control">
-            <button>Register</button>
+            <button disabled={loading}>
+              {loading ? <Spinner isLoading={loading} /> : "Register"}
+            </button>
           </div>
           Already have an account? <Link to="/login">Login</Link>
         </form>
