@@ -2,18 +2,8 @@ import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { Login, Register } from "./Pages/Public";
-import { Dashboard, Inventory, Record } from "./Pages/Private";
-import { getStoredAuthToken } from "./utils";
+import { Dashboard, Inventory, Record, Settings } from "./Pages/Private";
 import ProtectedPages from "./utils/protectedPage";
-const parseJwt = (token) => {
-  try {
-    return JSON.parse(atob(token.split(".")[1]));
-  } catch (e) {
-    return null;
-  }
-};
-const decodedJwt = parseJwt(getStoredAuthToken());
-const isLoggedIn = getStoredAuthToken() && decodedJwt.exp * 1000 > Date.now();
 
 const AppRoute = () => {
   return (
@@ -26,6 +16,7 @@ const AppRoute = () => {
           <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
           <Route path={ROUTES.RECORD} element={<Record />} />
           <Route path={ROUTES.INVENTORY} element={<Inventory />} />
+          <Route path={ROUTES.SETTINGS} element={<Settings />} />
         </Route>
         <Route path="/*" element={<div>Error Page - Public</div>} />
       </Routes>

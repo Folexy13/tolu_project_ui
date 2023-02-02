@@ -79,6 +79,7 @@ const Dashboard = () => {
     setShow(!show);
   };
   const handlePostStock = async (e) => {
+    setLoading(true)
     e.preventDefault();
     let payload = {
       stockName,
@@ -108,7 +109,7 @@ const Dashboard = () => {
     console.log("yippie");
   }, []);
   return (
-    <DashboardLayout>
+    <DashboardLayout isLoading={false}>
       <div className="main">
         <div className="button" onClick={handleShow}>
           <RxPlus fontWeight={800} />

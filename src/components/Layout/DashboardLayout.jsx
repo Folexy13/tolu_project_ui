@@ -1,18 +1,12 @@
 import React from "react";
 import "./Styles.scss";
 import { DBHeader, DBNavbar } from "..";
-import { useState } from "react";
-const DashboardLayout = ({ children }) => {
-  const [active, setActive] = useState("");
-  const handleRoute = (val) => {
-    // setActive(val);
-  };
-  // console.log("active bar:", active);
+const DashboardLayout = ({ isLoading, children }) => {
   return (
     <div className="dashboard">
-      <DBNavbar setActiveBar={handleRoute} />
+      <DBNavbar />
       <DBHeader />
-      <div className="container">{children}</div>
+      <div className="container">{isLoading ? "Loading..." : children}</div>
     </div>
   );
 };

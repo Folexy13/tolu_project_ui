@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 const Record = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageIsLoading, setPageIsLoading] = useState(true);
   const tableHeadData = [
     "Stock Item",
     "Quantity",
@@ -27,14 +28,25 @@ const Record = () => {
         }
       });
     };
+    const fetchStock = async () => {
+      await userOBJ.get_all_stocks(currentPage).then((res) => {
+        if (res.status) {
+          setUsers(res.data.payload);
+        }
+      });
+    };
     fetchUsers();
+    fetchStock();
+    if (fetchStock() && fetchUsers()) {
+      setPageIsLoading(false);
+    }
   }, []);
 
   console.log(users);
 
   const [data, setData] = useState([]);
   return (
-    <DashboardLayout>
+    <DashboardLayout isLoading={pageIsLoading}>
       <div className="main">
         <div className="filter">
           <div className="first">
