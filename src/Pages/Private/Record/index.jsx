@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const Record = () => {
   const [users, setUsers] = useState([]);
+  const [stock, setStock] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageIsLoading, setPageIsLoading] = useState(true);
   const tableHeadData = [
@@ -27,22 +28,15 @@ const Record = () => {
           setUsers(res.data.payload);
         }
       });
-    };
-    const fetchStock = async () => {
       await userOBJ.get_all_stocks(currentPage).then((res) => {
         if (res.status) {
-          setUsers(res.data.payload);
+          setStock(res.payload.payload);
+          setPageIsLoading(false);
         }
       });
     };
     fetchUsers();
-    fetchStock();
-    if (fetchStock() && fetchUsers()) {
-      setPageIsLoading(false);
-    }
-  }, []);
-
-  console.log(users);
+  }, [currentPage, stock]);
 
   const [data, setData] = useState([]);
   return (
@@ -67,6 +61,9 @@ const Record = () => {
                 <option value="" selected disabled>
                   Select a stock
                 </option>
+                {stock.map((el, i) => {
+                  return <option key={i}>{el.description}</option>;
+                })}
               </select>
             </div>
             <div className="box">
@@ -79,7 +76,10 @@ const Record = () => {
             </div>
           </div>
           <div className="second">
-            <button>
+            <button
+              disabled={data.length === 0}
+              style={{ border: data.length === 0 ? "2px solid #a69898" : 0 }}
+            >
               <CiFilter size={16} /> Filter
             </button>
           </div>

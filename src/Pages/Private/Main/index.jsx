@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./Styles.scss";
-import { RxPlus } from "react-icons/rx";
 import {
   Card,
   Chart,
@@ -13,6 +12,7 @@ import { useState } from "react";
 import { getStoredAuthToken } from "../../../utils";
 import userOBJ from "../../../Classes";
 import { toast } from "react-toastify";
+import { FiPlus, FiUserPlus } from "react-icons/fi";
 const chartdata = [
   {
     created_at__date: "12/26/2022",
@@ -79,7 +79,7 @@ const Dashboard = () => {
     setShow(!show);
   };
   const handlePostStock = async (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     let payload = {
       stockName,
@@ -97,6 +97,7 @@ const Dashboard = () => {
         setSize("");
         setType("");
         setLocation("");
+        setLoading(false);
       } else {
         toast.error(res.message);
         setLoading(false);
@@ -104,17 +105,21 @@ const Dashboard = () => {
       }
     });
   };
-  useEffect(() => {
-    getStoredAuthToken();
-    console.log("yippie");
-  }, []);
+
   return (
     <DashboardLayout isLoading={false}>
       <div className="main">
-        <div className="button" onClick={handleShow}>
-          <RxPlus fontWeight={800} />
-          Add New Stock
+        <div className="btn-flex">
+          <div className="button" onClick={handleShow}>
+            <FiPlus fontWeight={800} />
+            Add New Stock
+          </div>
+          <div className="button" onClick={handleShow}>
+            <FiUserPlus fontWeight={800} />
+            Request New Stock
+          </div>
         </div>
+
         <Card width={"calc(100% - 40px)"}>
           <Chart chartdata={chartdata} />
         </Card>
@@ -126,7 +131,7 @@ const Dashboard = () => {
         <Modal close={!show} onClick={handleShow}>
           <form onSubmit={handlePostStock}>
             <div className="form-control">
-              <label htmlFor="name">Stock Name</label>
+              <label htmlFor="name">Item</label>
               <input
                 type="text"
                 required
