@@ -178,7 +178,7 @@ const Dashboard = () => {
               />
             </div>
             <div className="form-control">
-              <label htmlFor="name">ReOrder Level</label>
+              <label htmlFor="name">Reorder Level</label>
               <input
                 type="text"
                 value={threshold}
