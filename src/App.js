@@ -2,7 +2,13 @@ import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { Login, Register } from "./Pages/Public";
-import { Dashboard, Inventory, Record, Settings } from "./Pages/Private";
+import {
+  Dashboard,
+  Inventory,
+  Record,
+  SearchPage,
+  Settings,
+} from "./Pages/Private";
 import ProtectedPages from "./utils/protectedPage";
 
 const AppRoute = () => {
@@ -17,6 +23,7 @@ const AppRoute = () => {
           <Route path={ROUTES.RECORD} element={<Record />} />
           <Route path={ROUTES.INVENTORY} element={<Inventory />} />
           <Route path={ROUTES.SETTINGS} element={<Settings />} />
+          <Route path={ROUTES.SEARCH} element={<SearchPage />} />
         </Route>
         <Route path="/*" element={<div>Error Page - Public</div>} />
       </Routes>

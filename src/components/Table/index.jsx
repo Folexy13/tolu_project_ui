@@ -15,22 +15,38 @@ const Table = ({ width, headData, bodyData, type, isEmpty }) => {
         </thead>
         {!isEmpty && (
           <tbody>
-            {bodyData.map((el, i) => {
-              return (
-                <tr key={i}>
-                  <td>{el.stockItem}</td>
-                  <td>{el.quantity}</td>
-                  <td>{el.description}</td>
-                  <td>{el.collectorName}</td>
-                  <td>{el.issuerName}</td>
-                  <td>{el.date}</td>
-                </tr>
-              );
-            })}
+            {type === "search"
+              ? bodyData.map((el, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{el.stockName}</td>
+                      <td>{el.type}</td>
+                      <td>{el.size}</td>
+                      <td>{el.description.split("x").join(" ")}</td>
+                      <td>{el.location}</td>
+                      <td>{el.createdAt}</td>
+                      <td>{el.quantity}</td>
+                      <td>{el.quantity}</td>
+                      <td></td>
+                    </tr>
+                  );
+                })
+              : bodyData.map((el, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{el.stockItem}</td>
+                      <td>{el.quantity}</td>
+                      <td>{el.description}</td>
+                      <td>{el.collectorName}</td>
+                      <td>{el.issuerName}</td>
+                      <td>{el.date}</td>
+                    </tr>
+                  );
+                })}
           </tbody>
         )}
       </table>
-      {isEmpty && <EmptyState data={"data"} />}
+      {isEmpty && <EmptyState data={"data"} color="#002" />}
     </>
   );
 };

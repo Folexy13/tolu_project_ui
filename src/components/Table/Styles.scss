@@ -20,8 +20,10 @@
 
                 tbody tr {
                     border-bottom: 1px solid #dddddd;
+                    color: #352f2f;
                     &:nth-of-type(even) {
                             background-color: #fff;
+                            color: #002;
                         }
                         &:last-of-type {
                             border-bottom: 2px solid brown;

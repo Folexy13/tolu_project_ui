@@ -1,10 +1,12 @@
 import React from "react";
 import "./Styles.scss";
 
-const EmptyState = ({ data }) => {
+const EmptyState = ({ data, color }) => {
   return (
     <div className="wrapper">
-      <div className="">No {data} available</div>
+      <div className="" style={{ color: color }}>
+        No {data} available
+      </div>
     </div>
   );
 };

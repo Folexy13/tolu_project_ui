@@ -4,7 +4,6 @@ import { CiFilter } from "react-icons/ci";
 import "./Styles.scss";
 import { useState } from "react";
 import userOBJ from "../../../Classes";
-import { toast } from "react-toastify";
 
 const Record = () => {
   const [users, setUsers] = useState([]);

@@ -114,10 +114,10 @@ const Dashboard = () => {
             <FiPlus fontWeight={800} />
             Add New Stock
           </div>
-          <div className="button" onClick={handleShow}>
+          {/* <div className="button" onClick={handleShow}>
             <FiUserPlus fontWeight={800} />
             Request New Stock
-          </div>
+          </div> */}
         </div>
 
         <Card width={"calc(100% - 40px)"}>

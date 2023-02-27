@@ -6,4 +6,5 @@ export const ROUTES = {
   RECORD: "/record",
   INVENTORY: "/inventory",
   SETTINGS: "/settings",
+  SEARCH: "/search",
 };

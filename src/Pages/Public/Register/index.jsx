@@ -1,9 +1,10 @@
 import React from "react";
 import "./Styles.scss";
 import { Link, useNavigate } from "react-router-dom";
-import bgImage from "../../../assets/image/register.jpg";
 import { IoChevronBackSharp } from "react-icons/io5";
 import { useState } from "react";
+
+import logo from "../../../assets/image/logo.JPG";
 import userOBJ from "../../../Classes";
 import { toast } from "react-toastify";
 import { Spinner } from "../../../components";
@@ -40,14 +41,11 @@ const Register = () => {
   };
   return (
     <div className="register">
-      <div className="first_section">
-        <img src={bgImage} alt="..." />
-      </div>
       <div className="second_section">
         <div className="back" onClick={() => navigate(-1)}>
           <IoChevronBackSharp size={30} /> Back
         </div>
-        <h1>Register</h1>
+        <img src={logo} alt="" width={300} />
         <form onSubmit={handleRegister}>
           <div className="form_control">
             <label htmlFor="">Fullname</label>

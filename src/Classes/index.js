@@ -93,6 +93,15 @@ class USER {
       return error;
     }
   };
+
+  get_search_stock = async (page, filters) => {
+    try {
+      const response = await api.get(`/search/${page}/?${filters}`);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
 }
 
 const userOBJ = new USER();

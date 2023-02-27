@@ -1,7 +1,7 @@
 import React from "react";
 import "./Styles.scss";
-import { Link, useNavigate } from "react-router-dom";
-import bgImage from "../../../assets/image/login2.webp";
+import { Link } from "react-router-dom";
+import logo from "../../../assets/image/logo.JPG";
 import { useState } from "react";
 import UserObj from "../../../Classes";
 import { toast } from "react-toastify";
@@ -11,7 +11,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -34,16 +33,13 @@ const Login = () => {
   };
   return (
     <div className="login">
-      <div className="first_section">
-        <img src={bgImage} alt="..." />
-      </div>
       <div className="second_section">
-        <h1>Login</h1>
+        <img src={logo} alt="" width={300} />
         <form onSubmit={handleLogin}>
           <div className="form_control">
             <label htmlFor="">Email</label>
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
