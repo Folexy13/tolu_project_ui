@@ -25,10 +25,9 @@ const DBHeader = (page) => {
 
   useEffect(() => {
     const listener = async (event) => {
+      console.log(event);
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         console.log("Enter key was pressed. Run your function.");
-        // event.preventDefault();
-        alert(searchParams);
         setIsLoading(true);
         await userOBJ.get_search_stock(1, searchParams).then((res) => {
           if (res.status) {

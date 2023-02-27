@@ -27,7 +27,7 @@ const Table = ({ width, headData, bodyData, type, isEmpty }) => {
                       <td>{el.location}</td>
                       <td>{moment(el.createdAt).format("lll")}</td>
                       <td>{el.quantity}</td>
-                      <td>{el.quantity}</td>
+                      <td>{el.threshold}</td>
                       <td></td>
                     </tr>
                   );
