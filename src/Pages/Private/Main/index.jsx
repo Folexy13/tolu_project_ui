@@ -73,6 +73,7 @@ const Dashboard = () => {
   const [quantity, setQuantity] = useState("");
   const [size, setSize] = useState("");
   const [type, setType] = useState("");
+  const [threshold, setThreshold] = useState("");
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
   const handleShow = () => {
@@ -87,6 +88,7 @@ const Dashboard = () => {
       size,
       type,
       location,
+      threshold,
     };
     await userOBJ.user_add_stock(payload).then((res) => {
       if (res.status) {
@@ -97,6 +99,7 @@ const Dashboard = () => {
         setSize("");
         setType("");
         setLocation("");
+        setThreshold("");
         setLoading(false);
       } else {
         toast.error(res.message);
@@ -163,6 +166,7 @@ const Dashboard = () => {
                 onChange={(e) => setLocation(e.target.value)}
               />
             </div>
+
             <div className="form-control">
               <label htmlFor="name">Quantity</label>
               <input
@@ -171,6 +175,14 @@ const Dashboard = () => {
                 required
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label htmlFor="name">ReOrder Level</label>
+              <input
+                type="text"
+                value={threshold}
+                onChange={(e) => setThreshold(e.target.value)}
               />
             </div>
             <div className="form-control">
