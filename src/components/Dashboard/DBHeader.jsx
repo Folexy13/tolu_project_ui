@@ -4,41 +4,38 @@ import { RxAvatar } from "react-icons/rx";
 import "../../Pages/Private/Main/Styles.scss";
 import userOBJ from "../../Classes";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import Spinner from "../Spinner";
 const DBHeader = (page) => {
-  const [searchParams, setSearchParams] = useState("");
+  const { search } = useLocation();
+  const [searchParams, setSearchParams] = useState(search.split("=")[1] || "");
+
   const [isLoading, setIsLoading] = useState(false);
   const nav = useNavigate();
   let handleSearch = async () => {
     setIsLoading(true);
-    await userOBJ
-      .get_search_stock(1, `stockName=${searchParams}`)
-      .then((res) => {
-        if (res.status) {
-          setIsLoading(false);
-          nav(ROUTES.SEARCH + `?stockName=${searchParams}`, { state: res });
-        }
-      });
+    await userOBJ.get_search_stock(1, searchParams).then((res) => {
+      if (res.status) {
+        setIsLoading(false);
+        nav(ROUTES.SEARCH + `?stockName=${searchParams}`, { state: res });
+      }
+    });
   };
+
   useEffect(() => {
-    let handleSearch = async () => {
-      setIsLoading(true);
-      await userOBJ
-        .get_search_stock(1, `stockName=${searchParams}`)
-        .then((res) => {
+    const listener = async (event) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        console.log("Enter key was pressed. Run your function.");
+        // event.preventDefault();
+        alert(searchParams);
+        setIsLoading(true);
+        await userOBJ.get_search_stock(1, searchParams).then((res) => {
           if (res.status) {
             setIsLoading(false);
             nav(ROUTES.SEARCH + `?stockName=${searchParams}`, { state: res });
           }
         });
-    };
-    const listener = (event) => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        console.log("Enter key was pressed. Run your function.");
-        // event.preventDefault();
-        handleSearch();
       }
     };
     document.addEventListener("keydown", listener);

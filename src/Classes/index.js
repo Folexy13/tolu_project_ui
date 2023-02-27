@@ -94,9 +94,9 @@ class USER {
     }
   };
 
-  get_search_stock = async (page, filters) => {
+  get_search_stock = async (page, stockName) => {
     try {
-      const response = await api.get(`/search/${page}/?${filters}`);
+      const response = await api.get(`/search/${page}/?stockName=${stockName}`);
       return response;
     } catch (error) {
       return error;

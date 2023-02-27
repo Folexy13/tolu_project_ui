@@ -1,6 +1,7 @@
 import React from "react";
 import "./Styles.scss";
 import EmptyState from "../EmptyState";
+import moment from "moment";
 
 const Table = ({ width, headData, bodyData, type, isEmpty }) => {
   return (
@@ -24,7 +25,7 @@ const Table = ({ width, headData, bodyData, type, isEmpty }) => {
                       <td>{el.size}</td>
                       <td>{el.description.split("x").join(" ")}</td>
                       <td>{el.location}</td>
-                      <td>{el.createdAt}</td>
+                      <td>{moment(el.createdAt).format("lll")}</td>
                       <td>{el.quantity}</td>
                       <td>{el.quantity}</td>
                       <td></td>

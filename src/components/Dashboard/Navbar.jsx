@@ -1,6 +1,10 @@
 import React from "react";
 import { FiSettings } from "react-icons/fi";
-import { RiDashboardFill, RiGitRepositoryLine } from "react-icons/ri";
+import {
+  RiDashboardFill,
+  RiGitPullRequestLine,
+  RiGitRepositoryLine,
+} from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { MdOutlineInventory } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,6 +26,15 @@ const DBNavbar = () => {
               color={PATH === ROUTES.DASHBOARD ? "#fff" : ""}
             />
             Dashboard
+          </Link>
+        </li>
+        <li className={PATH === ROUTES.REQUEST ? "active" : ""}>
+          <Link to={ROUTES.REQUEST}>
+            <RiGitPullRequestLine
+              size={25}
+              color={PATH === ROUTES.REQUEST ? "#fff" : ""}
+            />{" "}
+            Request Stock
           </Link>
         </li>
         <li className={PATH === ROUTES.RECORD ? "active" : ""}>

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Styles.scss";
 import { DashboardLayout, Table } from "../../../components";
 import { useLocation } from "react-router-dom";
 
 const SearchPage = () => {
   const { state } = useLocation();
+  // const
+
+  useEffect(() => {}, []);
+
   const tableHeadData = [
     "Name",
     "Type",
