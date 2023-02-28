@@ -10,6 +10,7 @@ import Table from "./Table";
 import EmptyState from "./EmptyState";
 import Modal from "./Modal/Index";
 import Spinner from "./Spinner";
+import DropdownButton from "./DropdownButton";
 
 export {
   Navbar,
@@ -24,4 +25,5 @@ export {
   EmptyState,
   DBNavbar,
   Spinner,
+  DropdownButton,
 };

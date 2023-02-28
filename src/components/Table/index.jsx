@@ -2,7 +2,12 @@ import React from "react";
 import "./Styles.scss";
 import EmptyState from "../EmptyState";
 import moment from "moment";
-
+import { DropdownButton } from "..";
+const options = [
+  { label: "Request", value: "request" },
+  { label: "View", value: "view" },
+  { label: "Delete", value: "delete" },
+];
 const Table = ({ width, headData, bodyData, type, isEmpty }) => {
   return (
     <>
@@ -28,7 +33,9 @@ const Table = ({ width, headData, bodyData, type, isEmpty }) => {
                       <td>{moment(el.createdAt).format("lll")}</td>
                       <td>{el.quantity}</td>
                       <td>{el.threshold}</td>
-                      <td></td>
+                      <td>
+                        <DropdownButton options={options} />
+                      </td>
                     </tr>
                   );
                 })
