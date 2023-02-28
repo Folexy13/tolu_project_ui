@@ -41,7 +41,7 @@ const DBHeader = (page) => {
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, []);
+  }, [searchParams, nav]);
   return (
     <div className="section">
       <div className="search_page">

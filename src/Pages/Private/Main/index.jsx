@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Styles.scss";
 import {
   Card,
@@ -9,10 +9,9 @@ import {
   Table,
 } from "../../../components";
 import { useState } from "react";
-import { getStoredAuthToken } from "../../../utils";
 import userOBJ from "../../../Classes";
 import { toast } from "react-toastify";
-import { FiPlus, FiUserPlus } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
 const chartdata = [
   {
     created_at__date: "12/26/2022",
