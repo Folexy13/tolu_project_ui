@@ -6,7 +6,6 @@ import { DropdownButton } from "..";
 const options = [
   { label: "Request", value: "request" },
   { label: "View", value: "view" },
-  { label: "Delete", value: "delete" },
 ];
 const Table = ({ width, headData, bodyData, type, isEmpty }) => {
   return (
