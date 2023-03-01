@@ -34,7 +34,7 @@ const Table = ({ width, headData, bodyData, type, isEmpty }) => {
                       <td>{el.quantity}</td>
                       <td>{el.threshold}</td>
                       <td>
-                        <DropdownButton options={options} />
+                        <DropdownButton options={options} data={el} />
                       </td>
                     </tr>
                   );

@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import Spinner from "../Spinner";
-const DBHeader = (page) => {
+const DBHeader = () => {
   const { search } = useLocation();
   const [searchParams, setSearchParams] = useState(search.split("=")[1] || "");
 

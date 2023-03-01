@@ -11,6 +11,7 @@ import EmptyState from "./EmptyState";
 import Modal from "./Modal/Index";
 import Spinner from "./Spinner";
 import DropdownButton from "./DropdownButton";
+import Pagination from "./Pagination";
 
 export {
   Navbar,
@@ -24,6 +25,7 @@ export {
   Modal,
   EmptyState,
   DBNavbar,
+  Pagination,
   Spinner,
   DropdownButton,
 };
