@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import "./Styles.scss";
+import { usePagination } from "../../utils/usePagination";
 
 function Pagination({ totalPages, paginate }) {
   const [currentPage, setCurrentPage] = useState(1);
-
+  const paginationRange = usePagination({
+    currentPage,
+    totalCount: totalPages,
+    siblingCount: 2,
+    pageSize: 1,
+  });
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPages); i++) {
     pageNumbers.push(i);
   }
-  console.log("pageNumbers", pageNumbers);
+  if (currentPage === 0 || paginationRange?.length < 2) {
+    return null;
+  }
+  let lastPage = paginationRange[paginationRange?.length - 1];
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -41,13 +50,21 @@ function Pagination({ totalPages, paginate }) {
 
   return (
     <div className="pagination">
-      <button className="pagination-button" onClick={handleFirstClick}>
+      <button
+        disabled={currentPage === 1}
+        className="pagination-button"
+        onClick={handleFirstClick}
+      >
         &laquo;
       </button>
-      <button className="pagination-button" onClick={handlePrevClick}>
+      <button
+        disabled={currentPage === 1}
+        className="pagination-button"
+        onClick={handlePrevClick}
+      >
         &lt;
       </button>
-      {pageNumbers.map((number) => (
+      {paginationRange.map((number) => (
         <button
           key={number}
           className={`pagination-button ${
@@ -58,10 +75,18 @@ function Pagination({ totalPages, paginate }) {
           {number}
         </button>
       ))}
-      <button className="pagination-button" onClick={handleNextClick}>
+      <button
+        disabled={currentPage === lastPage}
+        className="pagination-button"
+        onClick={handleNextClick}
+      >
         &gt;
       </button>
-      <button className="pagination-button" onClick={handleLastClick}>
+      <button
+        disabled={currentPage === lastPage}
+        className="pagination-button"
+        onClick={handleLastClick}
+      >
         &raquo;
       </button>
     </div>

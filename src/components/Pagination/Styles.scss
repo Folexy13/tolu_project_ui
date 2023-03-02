@@ -4,6 +4,11 @@
     align-items: center;
     margin: 20px;
     float: right;
+    button:disabled {
+            background: #ccc !important;
+            color: #fff !important;
+            cursor: not-allowed !important;
+        }
 }
 .pagination-button {
     background-color: #fff;
@@ -21,4 +26,6 @@
         color: #fff;
         border: 1px solid brown;
     }
+
+    
 }
