@@ -8,6 +8,7 @@ const SearchPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { search } = useLocation();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   // const itemsPerPage = 2;
 
   const paginate = (pageNumber) => {
@@ -23,6 +24,7 @@ const SearchPage = () => {
         .get_search_stock(currentPage, search.split("=")[1])
         .then((res) => {
           setData(res);
+          setLoading(false);
         });
     };
     fetchData();
@@ -45,6 +47,7 @@ const SearchPage = () => {
         <Table
           headData={tableHeadData}
           isEmpty={data?.payload?.length === 0}
+          isLoading={loading}
           type={"search"}
           bodyData={data?.payload}
         />

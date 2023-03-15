@@ -12,6 +12,7 @@ import Modal from "./Modal/Index";
 import Spinner from "./Spinner";
 import DropdownButton from "./DropdownButton";
 import Pagination from "./Pagination";
+import Loading from "./Loading";
 
 export {
   Navbar,
@@ -23,6 +24,7 @@ export {
   Table,
   Chart,
   Modal,
+  Loading,
   EmptyState,
   DBNavbar,
   Pagination,

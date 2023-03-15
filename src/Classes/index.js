@@ -102,6 +102,15 @@ class USER {
       return error;
     }
   };
+
+  add_new_request = async (data) => {
+    try {
+      const response = await api.post(`/add-request`, data);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
 }
 
 const userOBJ = new USER();

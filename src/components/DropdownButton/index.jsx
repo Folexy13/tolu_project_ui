@@ -17,7 +17,7 @@ function DropdownButton({ options, data }) {
     setSelectedOption(option);
     setIsOpen(false);
     if (option.value === "request") {
-      nav(ROUTES.REQUEST + "/" + data._id + "/view", { state: data });
+      nav(ROUTES.REQUEST + "/" + data._id, { state: data });
     } else if (option.value === "view") {
     } else {
       handleDelete(data._id);

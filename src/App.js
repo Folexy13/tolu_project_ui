@@ -6,6 +6,7 @@ import {
   Dashboard,
   Inventory,
   Record,
+  Request,
   SearchPage,
   Settings,
 } from "./Pages/Private";
@@ -24,7 +25,7 @@ const AppRoute = () => {
           <Route path={ROUTES.INVENTORY} element={<Inventory />} />
           <Route path={ROUTES.SETTINGS} element={<Settings />} />
           <Route path={ROUTES.SEARCH} element={<SearchPage />} />
-          <Route path={ROUTES.REQUEST} element={<SearchPage />} />
+          <Route path={ROUTES.REQUEST + "/:id"} element={<Request />} />
         </Route>
         <Route path="/*" element={<div>Error Page - Public</div>} />
       </Routes>

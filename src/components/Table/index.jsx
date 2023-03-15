@@ -3,11 +3,12 @@ import "./Styles.scss";
 import EmptyState from "../EmptyState";
 import moment from "moment";
 import { DropdownButton } from "..";
+import LoadingState from "../Loading";
 const options = [
   { label: "Request", value: "request" },
   { label: "View", value: "view" },
 ];
-const Table = ({ width, headData, bodyData, type, isEmpty }) => {
+const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
   return (
     <>
       <table class="styled-table" style={{ width }}>
@@ -53,7 +54,8 @@ const Table = ({ width, headData, bodyData, type, isEmpty }) => {
           </tbody>
         )}
       </table>
-      {isEmpty && <EmptyState data={"data"} color="#002" />}
+      {isLoading && <LoadingState />}
+      {isEmpty && !isLoading && <EmptyState data={"data"} color="#002" />}
     </>
   );
 };
