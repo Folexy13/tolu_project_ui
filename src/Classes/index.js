@@ -84,7 +84,14 @@ class USER {
       return error;
     }
   };
-
+  get_recent_records = async () => {
+    try {
+      const response = await api.get("/get/recent-records");
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
   get_all_stocks = async (page) => {
     try {
       const response = await api.get(`/get/all-stocks?page=${page}`);

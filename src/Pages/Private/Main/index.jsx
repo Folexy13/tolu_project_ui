@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Styles.scss";
 import {
   Card,
@@ -107,6 +107,18 @@ const Dashboard = () => {
       }
     });
   };
+  useEffect(() => {
+    const fetchRecentTransaction = async () => {
+      await userOBJ.get_recent_records().then((res) => {
+        if (res.status) {
+          setTableData(res.payload);
+        }
+        console.log(res);
+      });
+    };
+
+    fetchRecentTransaction();
+  }, []);
 
   return (
     <DashboardLayout isLoading={false}>
@@ -123,7 +135,7 @@ const Dashboard = () => {
         </div>
 
         <Card width={"calc(100% - 40px)"}>
-          <Chart chartdata={chartdata} />
+          <Chart chartdata={tableData} />
         </Card>
 
         <div style={{ marginTop: "60px", color: "#002" }}>

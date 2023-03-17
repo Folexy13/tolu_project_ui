@@ -18,8 +18,8 @@ export const Chart = ({ chartdata }) => {
       data.push({
         date: chartdata[i]?.created_at__date,
         name: "name" + i,
-        value: chartdata[i]?.day_sales,
-        axisLabel: chartdata[i]?.axisLabel,
+        value: chartdata[i]?.quantity,
+        axisLabel: chartdata[i]?.stockItem.stockName,
       });
     }
     x.data = data;

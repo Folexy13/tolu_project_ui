@@ -42,12 +42,13 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
               : bodyData.map((el, i) => {
                   return (
                     <tr key={i}>
-                      <td>{el.stockItem}</td>
+                      <td>{el.stockItem.description}</td>
                       <td>{el.quantity}</td>
-                      <td>{el.description}</td>
+                      <td>{el.itemDescription}</td>
                       <td>{el.collectorName}</td>
                       <td>{el.issuerName}</td>
-                      <td>{el.date}</td>
+                      <td>{moment(el.createdAt).format("lll")}</td>
+                      <td>{el.status}</td>
                     </tr>
                   );
                 })}
@@ -68,7 +69,8 @@ Table.defaultProps = {
     "Description",
     "Collector Name",
     "Issuer Name",
-    "Date",
+    "Date/Time",
+    "Status",
   ],
   bodyData: [
     {
