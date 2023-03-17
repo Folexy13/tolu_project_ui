@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactToPrint from "react-to-print";
 import "./Styles.scss";
 import { DashboardLayout, Spinner } from "../../../components";
@@ -145,6 +145,17 @@ const PrintButton = ({
 };
 
 const App = () => {
+  const { id } = useParams();
+  const [stockItem, setStockItem] = useState({});
+  useEffect(() => {
+    const fetchStock = async () => {
+      await userOBJ.get_stock(id).then((res) => {
+        setStockItem(res.payload);
+      });
+    };
+    fetchStock();
+  }, []);
+
   const [issuerName, setIssuerName] = useState("");
   const [collectorName, setCollectorName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
@@ -153,7 +164,6 @@ const App = () => {
   const pageRef = useRef(null);
   const [isSubmmited, setIsSubmmited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { id } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -198,6 +208,7 @@ const App = () => {
       <div className="main">
         {!isSubmmited && (
           <form onSubmit={handleSubmit}>
+            <h1>{stockItem.stockName}</h1>
             <div className="form-control">
               <p htmlFor="">Issuer Name</p>
               <input
@@ -216,11 +227,11 @@ const App = () => {
             </div>
             <div className="form-control">
               <p htmlFor="">Item Description</p>
-              <input
-                type="text"
-                value={itemDescription}
-                onChange={(e) => setItemDescription(e.target.value)}
-              />
+              <input type="text" value={stockItem?.description} />
+            </div>
+            <div className="form-control">
+              <p htmlFor="">Item Location</p>
+              <input type="text" value={stockItem?.location} />
             </div>
             <div className="form-control">
               <p htmlFor="">Designation</p>

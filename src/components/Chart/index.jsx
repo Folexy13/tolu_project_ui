@@ -7,7 +7,6 @@ am4core.useTheme(am4themes_animated);
 
 export const Chart = ({ chartdata }) => {
   const chart = useRef(null);
-
   useLayoutEffect(() => {
     let x = am4core.create("chartdiv", am4charts.XYChart);
 
@@ -16,7 +15,7 @@ export const Chart = ({ chartdata }) => {
     let data = [];
     for (let i = 1; i < chartdata?.length; i++) {
       data.push({
-        date: chartdata[i]?.created_at__date,
+        date: chartdata[i].createdAt,
         name: "name" + i,
         value: chartdata[i]?.quantity,
         axisLabel: chartdata[i]?.stockItem.stockName,

@@ -20,7 +20,6 @@ class USER {
   };
   //signup new user
   user_signup = async (data) => {
-    console.log(data);
     try {
       const response = await api.post("/user/signup", data);
       if (response?.status) {
@@ -101,6 +100,14 @@ class USER {
     }
   };
 
+  get_stock = async (id) => {
+    try {
+      const response = await api.get(`/get/stock/${id}`);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
   get_search_stock = async (page, stockName) => {
     try {
       const response = await api.get(`/search/${page}/?stockName=${stockName}`);

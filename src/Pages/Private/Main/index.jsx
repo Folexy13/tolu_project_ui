@@ -119,7 +119,6 @@ const Dashboard = () => {
 
     fetchRecentTransaction();
   }, []);
-
   return (
     <DashboardLayout isLoading={false}>
       <div className="main">
