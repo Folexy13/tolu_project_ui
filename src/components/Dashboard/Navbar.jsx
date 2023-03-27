@@ -28,15 +28,6 @@ const DBNavbar = () => {
             Dashboard
           </Link>
         </li>
-        <li className={PATH === ROUTES.REQUEST ? "active" : ""}>
-          <Link to={"#"}>
-            <RiGitPullRequestLine
-              size={25}
-              color={PATH === ROUTES.REQUEST ? "#fff" : ""}
-            />{" "}
-            Request Stock
-          </Link>
-        </li>
         <li className={PATH === ROUTES.RECORD ? "active" : ""}>
           <Link to={ROUTES.RECORD}>
             <RiGitRepositoryLine
@@ -46,6 +37,24 @@ const DBNavbar = () => {
             Transaction Record
           </Link>
         </li>
+        <li
+          className={
+            window.location.href.split("/").includes("request") ? "active" : ""
+          }
+        >
+          <Link to={ROUTES.REQUEST}>
+            <RiGitPullRequestLine
+              size={25}
+              color={
+                window.location.href.split("/").includes("request")
+                  ? "#fff"
+                  : ""
+              }
+            />{" "}
+            Request Stock
+          </Link>
+        </li>
+
         <li className={PATH === ROUTES.INVENTORY ? "active" : ""}>
           <Link to={ROUTES.INVENTORY}>
             <MdOutlineInventory

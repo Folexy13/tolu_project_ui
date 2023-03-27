@@ -2,6 +2,7 @@ import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { Login, Register } from "./Pages/Public";
+import { useParams } from "react-router-dom";
 import {
   Dashboard,
   Inventory,
@@ -11,8 +12,10 @@ import {
   Settings,
 } from "./Pages/Private";
 import ProtectedPages from "./utils/protectedPage";
+import ErrorBoundary from "./utils/ErrorBoundary";
 
 const AppRoute = () => {
+  const { id } = useParams;
   return (
     <BrowserRouter>
       <Routes>
@@ -25,7 +28,7 @@ const AppRoute = () => {
           <Route path={ROUTES.INVENTORY} element={<Inventory />} />
           <Route path={ROUTES.SETTINGS} element={<Settings />} />
           <Route path={ROUTES.SEARCH} element={<SearchPage />} />
-          <Route path={ROUTES.REQUEST + "/:id"} element={<Request />} />
+          <Route path={ROUTES.REQUEST + "/:id?"} element={<Request />} />
         </Route>
         <Route path="/*" element={<div>Error Page - Public</div>} />
       </Routes>
@@ -33,7 +36,11 @@ const AppRoute = () => {
   );
 };
 function App() {
-  return <AppRoute />;
+  return (
+    <ErrorBoundary>
+      <AppRoute />
+    </ErrorBoundary>
+  );
 }
 
 export default App;

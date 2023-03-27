@@ -1,6 +1,7 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
 import { useLayoutEffect, useRef } from "react";
 
 am4core.useTheme(am4themes_animated);
@@ -10,6 +11,10 @@ export const Chart = ({ chartdata }) => {
   useLayoutEffect(() => {
     let x = am4core.create("chartdiv", am4charts.XYChart);
 
+    let title = x.titles.create();
+    title.text = " Transaction date Vs Quantity purchased";
+    title.fontSize = 20;
+    title.align = "center";
     x.paddingRight = 20;
 
     let data = [];

@@ -4,8 +4,9 @@ import "./Styles.scss";
 import { DashboardLayout, Spinner } from "../../../components";
 import userOBJ from "../../../Classes";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
+import logo from "../../../assets/image/logo.JPG";
 
 const PrintComponent = ({
   issuerName,
@@ -21,10 +22,25 @@ const PrintComponent = ({
   return (
     <div
       className="pdf-body"
-      style={{ height: window.innerHeight, display: "none" }}
+      style={{
+        minHeight: window.innerHeight,
+        maxHeight: "fit-content",
+        display: "none",
+      }}
       ref={pageRef}
     >
-      <h1> Verification Form</h1>
+      <img
+        src={logo}
+        alt=""
+        width={200}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "10px auto",
+        }}
+      />
+      <h1> Request Verification Form</h1>
       <div className="heading">Check Request</div>
       <div className="float-left">
         <div className="diff">
@@ -50,6 +66,11 @@ const PrintComponent = ({
         <p> Name: {issuerName}</p>
         <p>Signature: ______________________</p>
       </div>
+      <div className="heading">Production Manager</div>
+      <div className="diff sect">
+        <p> Name: Bola Tolulope</p>
+        <p>Signature: ______________________</p>
+      </div>
       {props.children}
     </div>
   );
@@ -69,6 +90,12 @@ const PrintButton = ({
          max-height: 70vh !important;
          background-color: #fff;
          padding: 30px 0px;
+  }
+  img{
+    display: "flex",
+          justify-content: "center",
+          align-items: "center",
+          margin: "10px auto",
   }
   .float-left{
             padding: 10px 60px;
@@ -105,18 +132,11 @@ const PrintButton = ({
        text-align: center;
             color: brown;
     }
-    // p {
-    //   font-weight: bold;
-    //   font-size:24px;
-    //   display:block
-    // }
-    // p {
-    //   margin-left: 10px;
-    //   font-size:20px;
-    //   border:
-    // }
+   .print{display:none}
     p{
-            margin: 5px 0;}
+            margin: 5px 0;
+            font-size:18px
+          }
             p:nth-child(2){
               margin-top: 0px;
             }
@@ -127,7 +147,11 @@ const PrintButton = ({
 
   return (
     <ReactToPrint
-      trigger={() => <button variant="primary">Print</button>}
+      trigger={() => (
+        <button className="print" variant="primary">
+          Print
+        </button>
+      )}
       content={() => pageRef.current}
       documentTitle="Request Form"
       bodyClass="pdf-body"
@@ -147,27 +171,38 @@ const PrintButton = ({
 const App = () => {
   const { id } = useParams();
   const [stockItem, setStockItem] = useState({});
+  const [allStocks, setAllStocks] = useState([]);
   useEffect(() => {
-    const fetchStock = async () => {
-      await userOBJ.get_stock(id).then((res) => {
-        setStockItem(res.payload);
-      });
-    };
-    fetchStock();
+    if (id) {
+      const fetchStock = async () => {
+        await userOBJ.get_stock(id).then((res) => {
+          setStockItem(res.payload);
+        });
+      };
+      fetchStock();
+    }
   }, []);
+
+  useEffect(() => {
+    const fetchAllStocks = async () => {
+      await userOBJ.get_all_stocks().then((res) => {});
+    };
+  });
 
   const [issuerName, setIssuerName] = useState("");
   const [collectorName, setCollectorName] = useState("");
-  const [itemDescription, setItemDescription] = useState("");
+  const [itemDescription, setItemDescription] = useState(stockItem.description);
   const [designation, setDesignation] = useState("");
   const [quantity, setQuantity] = useState(1);
   const pageRef = useRef(null);
   const [isSubmmited, setIsSubmmited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const nav = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!issuerName || !itemDescription || !collectorName || !designation) {
+    if (!issuerName || !collectorName || !designation) {
       toast.error("All Fields are required");
       return;
     }
@@ -176,7 +211,7 @@ const App = () => {
     let payload = {
       issuerName,
       collectorName,
-      itemDescription,
+      itemDescription: stockItem.description,
       designation,
       stockItem: id,
       quantity,
@@ -202,6 +237,9 @@ const App = () => {
     );
     // handle form submission
   };
+  if (!id) {
+    return <DashboardLayout>Page Coming Soon...</DashboardLayout>;
+  }
 
   return (
     <DashboardLayout isLoading={false}>
@@ -266,14 +304,19 @@ const App = () => {
           pageRef={pageRef}
         >
           {isSubmmited && (
-            <PrintButton
-              pageRef={pageRef}
-              issuerName={issuerName}
-              collectorName={collectorName}
-              itemDescription={itemDescription}
-              designation={designation}
-              quantity={quantity}
-            />
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div className="print">
+                <button onClick={() => nav(-1)}>Exit</button>
+              </div>
+              <PrintButton
+                pageRef={pageRef}
+                issuerName={issuerName}
+                collectorName={collectorName}
+                itemDescription={itemDescription}
+                designation={designation}
+                quantity={quantity}
+              />
+            </div>
           )}
         </PrintComponent>
       </div>

@@ -5,6 +5,7 @@ import {
   Chart,
   DashboardLayout,
   Modal,
+  Snackbar,
   Spinner,
   Table,
 } from "../../../components";
@@ -112,8 +113,9 @@ const Dashboard = () => {
       await userOBJ.get_recent_records().then((res) => {
         if (res.status) {
           setTableData(res.payload);
+        } else {
+          toast.error(res.message);
         }
-        console.log(res);
       });
     };
 
@@ -203,6 +205,7 @@ const Dashboard = () => {
           </form>
         </Modal>
       </div>
+      <Snackbar messages={["Folajimi is a bay", "Hello,how are you dping?"]} />
     </DashboardLayout>
   );
 };

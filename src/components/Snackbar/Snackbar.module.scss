@@ -1,0 +1,8 @@
+.MuiSnackbar-root {
+    flex-direction: column-reverse !important;
+
+    &>div {
+        margin-top: 10px;
+        /* set margin between each Snackbar */
+    }
+}

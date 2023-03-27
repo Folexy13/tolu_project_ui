@@ -24,23 +24,24 @@ const DBHeader = () => {
   };
 
   useEffect(() => {
-    const listener = async (event) => {
-      console.log(event);
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        console.log("Enter key was pressed. Run your function.");
-        setIsLoading(true);
-        await userOBJ.get_search_stock(1, searchParams).then((res) => {
-          if (res.status) {
-            setIsLoading(false);
-            nav(ROUTES.SEARCH + `?stockName=${searchParams}`, { state: res });
-          }
-        });
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
+    if (searchParams) {
+      const listener = async (event) => {
+        if (event.code === "Enter" || event.code === "NumpadEnter") {
+          console.log("Enter key was pressed. Run your function.");
+          setIsLoading(true);
+          await userOBJ.get_search_stock(1, searchParams).then((res) => {
+            if (res.status) {
+              setIsLoading(false);
+              nav(ROUTES.SEARCH + `?stockName=${searchParams}`, { state: res });
+            }
+          });
+        }
+      };
+      document.addEventListener("keydown", listener);
+      return () => {
+        document.removeEventListener("keydown", listener);
+      };
+    }
   }, [searchParams, nav]);
   return (
     <div className="section">

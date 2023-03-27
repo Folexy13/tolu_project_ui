@@ -13,6 +13,7 @@ import Spinner from "./Spinner";
 import DropdownButton from "./DropdownButton";
 import Pagination from "./Pagination";
 import Loading from "./Loading";
+import Snackbar from "./Snackbar/Snackbar";
 
 export {
   Navbar,
@@ -26,6 +27,7 @@ export {
   Modal,
   Loading,
   EmptyState,
+  Snackbar,
   DBNavbar,
   Pagination,
   Spinner,

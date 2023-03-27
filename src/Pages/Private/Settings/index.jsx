@@ -4,7 +4,7 @@ import { DashboardLayout } from "../../../components";
 const Settings = () => {
   return (
     <DashboardLayout>
-      <div className="main">Settings</div>
+      <div className="main">Page coming Soon...</div>
     </DashboardLayout>
   );
 };

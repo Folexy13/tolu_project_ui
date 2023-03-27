@@ -77,7 +77,9 @@ class USER {
 
   get_all_records = async (page) => {
     try {
-      const response = await api.get(`/get/all-records?page=${page}`);
+      const response = page
+        ? await api.get(`/get/all-records?page=${page}`)
+        : await api.get(`/get/all-records`);
       return response;
     } catch (error) {
       return error;
@@ -93,7 +95,9 @@ class USER {
   };
   get_all_stocks = async (page) => {
     try {
-      const response = await api.get(`/get/all-stocks?page=${page}`);
+      const response = page
+        ? await api.get(`/get/all-stocks?page=${page}`)
+        : await api.get(`/get/all-stocks`);
       return response;
     } catch (error) {
       return error;

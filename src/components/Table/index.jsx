@@ -11,7 +11,7 @@ const options = [
 const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
   return (
     <>
-      <table class="styled-table" style={{ width }}>
+      <table className="styled-table" style={{ width }}>
         <thead>
           <tr>
             {headData.map((el, i) => {
