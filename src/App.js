@@ -2,7 +2,6 @@ import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { Login, Register } from "./Pages/Public";
-import { useParams } from "react-router-dom";
 import {
   Dashboard,
   Inventory,
@@ -15,7 +14,6 @@ import ProtectedPages from "./utils/protectedPage";
 import ErrorBoundary from "./utils/ErrorBoundary";
 
 const AppRoute = () => {
-  const { id } = useParams;
   return (
     <BrowserRouter>
       <Routes>

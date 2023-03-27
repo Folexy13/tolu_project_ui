@@ -129,6 +129,15 @@ class USER {
       return error;
     }
   };
+
+  webhook = async () => {
+    try {
+      const response = await api.post(`/webhook`);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
 }
 
 const userOBJ = new USER();

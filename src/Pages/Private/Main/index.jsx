@@ -5,7 +5,6 @@ import {
   Chart,
   DashboardLayout,
   Modal,
-  Snackbar,
   Spinner,
   Table,
 } from "../../../components";
@@ -205,7 +204,6 @@ const Dashboard = () => {
           </form>
         </Modal>
       </div>
-      <Snackbar messages={["Folajimi is a bay", "Hello,how are you dping?"]} />
     </DashboardLayout>
   );
 };
