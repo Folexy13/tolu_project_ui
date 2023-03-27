@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
 function CustomSnackbar({ messages }) {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -53,9 +52,9 @@ function CustomSnackbar({ messages }) {
           onClose={handleClose}
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
-          <Alert onClose={handleClose} severity="warning">
-            {`There are ${data.length} item in stock that needs revamping. `}
-            <Link style={{ color: "red" }} to={ROUTES.INVENTORY}>
+          <Alert onClose={handleClose} severity="error">
+            {`There are ${data.length} item that needs to be re-stocked. `}
+            <Link style={{ color: "blue" }} to={ROUTES.INVENTORY}>
               Check them out
             </Link>
           </Alert>
