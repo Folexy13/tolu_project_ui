@@ -1,14 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Styles.scss";
 import EmptyState from "../EmptyState";
 import moment from "moment";
-import { DropdownButton } from "..";
+import { DropdownButton, Modal, Spinner } from "..";
 import LoadingState from "../Loading";
+import userOBJ from "../../Classes";
+import { toast } from "react-toastify";
 const options = [
   { label: "Request", value: "request" },
   { label: "View", value: "view" },
 ];
+
 const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
+  const [show, setShow] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const [id, setId] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleSelect = (val) => {
+    setShow(true);
+    setId(val);
+    console.log(val);
+  };
+  const handleTopUp = async (e) => {
+    e.preventDefault();
+    const payload = {
+      id,
+      quantity,
+    };
+    userOBJ.update_stock(payload).then((res) => {
+      if (res.status) {
+        toast.success(res.message);
+        setLoading(false);
+        setShow(false);
+        setQuantity("");
+        return;
+      } else {
+        toast.error(res.message);
+        setLoading(false);
+        return;
+      }
+    });
+  };
   return (
     <>
       <table className="styled-table" style={{ width }}>
@@ -39,21 +71,61 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
                     </tr>
                   );
                 })
+              : type === "stock"
+              ? bodyData.map((el, i) => {
+                  console.log(el);
+                  return (
+                    <tr key={i}>
+                      <td>{el?.stockName}</td>
+                      <td>{el?.quantity}</td>
+                      <td>{el?.description}</td>
+                      <td>{moment(el?.createdAt).format("lll")}</td>
+                      <td>
+                        <button
+                          className="btn"
+                          onClick={() => handleSelect(el?._id)}
+                        >
+                          Top Up
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
               : bodyData.map((el, i) => {
                   return (
                     <tr key={i}>
-                      <td>{el.stockItem.description}</td>
-                      <td>{el.quantity}</td>
-                      <td>{el.itemDescription}</td>
-                      <td>{el.collectorName}</td>
-                      <td>{el.issuerName}</td>
-                      <td>{moment(el.createdAt).format("lll")}</td>
+                      <td>{el?.stockItem?.description}</td>
+                      <td>{el?.quantity}</td>
+                      <td>{el?.itemDescription}</td>
+                      <td>{el?.collectorName}</td>
+                      <td>{el?.issuerName}</td>
+                      <td>{moment(el?.createdAt).format("lll")}</td>
                       <td>{el.status}</td>
                     </tr>
                   );
                 })}
           </tbody>
         )}
+        <Modal close={!show} onClick={() => setShow(!show)}>
+          <form onSubmit={handleTopUp}>
+            <div className="form-control">
+              <label htmlFor="name">Quantity</label>
+              <input
+                type="number"
+                required
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+            </div>
+            <button
+              disabled={loading}
+              type="submit"
+              onClick={() => setLoading(true)}
+            >
+              {loading ? <Spinner loading={loading} /> : "Top up now"}
+            </button>
+          </form>
+        </Modal>
       </table>
       {isLoading && <LoadingState />}
       {isEmpty && !isLoading && <EmptyState data={"data"} color="#002" />}

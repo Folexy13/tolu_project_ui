@@ -129,6 +129,17 @@ class USER {
       return error;
     }
   };
+  update_stock = async (data) => {
+    try {
+      const response = await api.post(`/update`, {
+        id: data.id,
+        threshold: data.quantity,
+      });
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
 
   webhook = async () => {
     try {

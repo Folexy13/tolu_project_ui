@@ -1,0 +1,48 @@
+.preloader {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  background: #f6f8f8;
+  transition: all ease-out 2s;
+  .sect1 {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f6f8f8;
+    p {
+      font-size: 48px;
+      color: #760000;
+    }
+    img {
+      @media (max-width: 980px) {
+        width: 50%;
+        height: auto;
+      }
+    }
+  }
+  .sect2 {
+    background: url(../../assets/images/sect3.png) no-repeat;
+    background-size: cover;
+    width: 20%;
+    height: 100vh;
+    @media (max-width: 980px) {
+      background-position: 50%;
+    }
+  }
+  .sect3 {
+    background: url(../../assets/images/sect2.png) no-repeat;
+    background-size: cover;
+    width: 20%;
+    height: 100vh;
+    @media (max-width: 980px) {
+      background-position: 50%;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import "./Styles.scss";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 
-function DropdownButton({ options, data }) {
+function DropdownButton({ options, data, label }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const nav = useNavigate();
@@ -27,7 +27,7 @@ function DropdownButton({ options, data }) {
   return (
     <div className="dropdown-container">
       <button className="dropdown-button" onClick={toggleDropdown}>
-        Action
+        {label ? label : "Action"}
       </button>
       {isOpen && (
         <ul className="dropdown-options">

@@ -52,7 +52,11 @@ function CustomSnackbar({ messages }) {
           onClose={handleClose}
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
-          <Alert onClose={handleClose} severity="error">
+          <Alert
+            onClose={handleClose}
+            severity="error"
+            style={{ fontSize: "20px" }}
+          >
             {`There are ${data.length} item that needs to be re-stocked. `}
             <Link style={{ color: "blue" }} to={ROUTES.INVENTORY}>
               Check them out
