@@ -3,20 +3,16 @@ import { DashboardLayout } from "../../../components";
 import './Styles.scss'
 
 const Settings = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
+  const handleFullName = (event) => {
+    setFullName(event.target.value);
   };
 
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
-  };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -40,23 +36,16 @@ const Settings = () => {
   };
   return (
     <DashboardLayout>
+      <div className='main'>
       <div className="user-settings">
       <h1>User Settings</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="first-name">First Name:</label>
+        <label htmlFor="first-name">Full Name:</label>
         <input
           type="text"
-          id="first-name"
-          value={firstName}
-          onChange={handleFirstNameChange}
-        />
-
-        <label htmlFor="last-name">Last Name:</label>
-        <input
-          type="text"
-          id="last-name"
-          value={lastName}
-          onChange={handleLastNameChange}
+          id="full-name"
+          value={fullName}
+          onChange={handleFullName}
         />
 
         <label htmlFor="password">New Password:</label>
@@ -94,6 +83,8 @@ const Settings = () => {
         <button type="submit">Save Changes</button>
       </form>
     </div>
+      </div>
+     
     </DashboardLayout>
   );
 };
