@@ -172,6 +172,7 @@ const App = () => {
   const { id } = useParams();
   const [stockItem, setStockItem] = useState({});
   const [allStocks, setAllStocks] = useState([]);
+
   useEffect(() => {
     if (id) {
       const fetchStock = async () => {
@@ -183,11 +184,15 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
+  useEffect( () => {
     const fetchAllStocks = async () => {
-      await userOBJ.get_all_stocks().then((res) => {});
+      await userOBJ.get_all_stocks().then((res) => {
+        console.log('data is: ',res)
+        setAllStocks(res.payload)
+      });
     };
-  });
+     fetchAllStocks()
+  },[]);
 
   const [issuerName, setIssuerName] = useState("");
   const [collectorName, setCollectorName] = useState("");
@@ -197,8 +202,11 @@ const App = () => {
   const pageRef = useRef(null);
   const [isSubmmited, setIsSubmmited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const nav = useNavigate();
+  const handleSelect = async(e)=>{
+    e.preventDefault();
+    setStockItem(JSON.parse(stockItem))
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -213,7 +221,7 @@ const App = () => {
       collectorName,
       itemDescription: stockItem.description,
       designation,
-      stockItem: id,
+      stockItem: id || stockItem._id,
       quantity,
     };
     await userOBJ.add_new_request(payload).then((res) => {
@@ -237,10 +245,10 @@ const App = () => {
     );
     // handle form submission
   };
-  if (!id) {
-    return <DashboardLayout>Page Coming Soon...</DashboardLayout>;
-  }
-
+  // if (!id) {
+  //   return <DashboardLayout>Page Coming Soon...</DashboardLayout>;
+  // }
+if(id || stockItem._id){
   return (
     <DashboardLayout isLoading={false}>
       <div className="main">
@@ -322,6 +330,58 @@ const App = () => {
       </div>
     </DashboardLayout>
   );
+}
+return (
+  <DashboardLayout isLoading={false}>
+    <div className="main">
+      {!isSubmmited && (
+        <form onSubmit={handleSelect} className="idan">
+          <h1>Select stock item</h1>
+          <div className="form-control">
+            <p htmlFor="">Stock item</p>
+            <select onChange={(e)=>{
+              setStockItem(e.target.value)
+              console.log(e.target.value)              }}>
+              <option disabled selected>Select Stock</option>
+              {allStocks?.map((stock,key)=>{
+                return <option key={key} value={JSON.stringify(stock)}>{stock.description}</option>
+              })}
+             
+            </select>
+          </div>
+          <button disabled={isLoading} type="submit">
+            {isLoading ? <Spinner isLoading={isLoading} /> : "Select"}
+          </button>
+        </form>
+      )}
+
+      <PrintComponent
+        issuerName={issuerName}
+        collectorName={collectorName}
+        itemDescription={itemDescription}
+        designation={designation}
+        quantity={quantity}
+        pageRef={pageRef}
+      >
+        {isSubmmited && (
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="print">
+              <button onClick={() => nav(-1)}>Exit</button>
+            </div>
+            <PrintButton
+              pageRef={pageRef}
+              issuerName={issuerName}
+              collectorName={collectorName}
+              itemDescription={itemDescription}
+              designation={designation}
+              quantity={quantity}
+            />
+          </div>
+        )}
+      </PrintComponent>
+    </div>
+  </DashboardLayout>
+);
 };
 
 export default App;

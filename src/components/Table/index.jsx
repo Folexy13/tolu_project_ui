@@ -10,6 +10,11 @@ const options = [
   { label: "Request", value: "request" },
   { label: "View", value: "view" },
 ];
+const optionStat = [
+  { label: "Pending", value: "Pending" },
+  { label: "Successful", value: "Successful" },
+  { label: "Rejected", value: "Rejected" },
+];
 
 const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
   const [show, setShow] = useState(false);
@@ -100,7 +105,7 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
                       <td>{el?.collectorName}</td>
                       <td>{el?.issuerName}</td>
                       <td>{moment(el?.createdAt).format("lll")}</td>
-                      <td>{el.status}</td>
+                      <td> <DropdownButton options={optionStat} data={el} nil={el.status} /></td>
                     </tr>
                   );
                 })}

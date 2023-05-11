@@ -34,18 +34,23 @@
     form{
         color: #002;
         width: 80% !important;
+        &.idan{
+            width:40% !important
+         }
         .form-control{
              margin: 20px 0;
             label{
                 width: 100%;
                 
             }
-                         input {
+                         input,select {
                              width: calc(100% - 40px);
                              padding: 15px 20px;
                              border-radius: 5px;
                             margin-top: 10px;
                              outline: 0;
+                         }select{
+width:100%
                          }
             button{
 background: brown;

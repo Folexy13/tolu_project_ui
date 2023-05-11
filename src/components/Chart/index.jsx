@@ -23,7 +23,7 @@ export const Chart = ({ chartdata }) => {
         date: chartdata[i].createdAt,
         name: "name" + i,
         value: chartdata[i]?.quantity,
-        axisLabel: chartdata[i]?.stockItem.stockName,
+        axisLabel: chartdata[i]?.stockItem?.stockName,
       });
     }
     x.data = data;

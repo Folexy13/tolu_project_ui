@@ -133,14 +133,26 @@ class USER {
     try {
       const response = await api.post(`/update`, {
         id: data.id,
-        threshold: data.quantity,
+        type:data.type,
+        field:data.field,
       });
       return response;
     } catch (error) {
       return error;
     }
   };
-
+  update_status = async (data) => {
+    try {
+      const response = await api.post(`/update_v2`, {
+        id: data.id,
+        type:data.type,
+        field:data.field,
+      });
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
   webhook = async () => {
     try {
       const response = await api.post(`/webhook`);
