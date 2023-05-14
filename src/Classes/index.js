@@ -161,6 +161,14 @@ class USER {
       return error;
     }
   };
+  update_user = async(data) =>{
+    try {
+       const response = await api.post(`/update/me/${data.id}`,data);
+      return response;
+    } catch (error) {
+      return error
+    }
+  }
 }
 
 const userOBJ = new USER();

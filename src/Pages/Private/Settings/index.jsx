@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { DashboardLayout } from "../../../components";
+import { DashboardLayout, Spinner } from "../../../components";
 import './Styles.scss'
+import { getClientUser } from "../../../utils";
+import userOBJ from "../../../Classes";
+import { toast } from "react-toastify";
 
 const Settings = () => {
-  const [fullName, setFullName] = useState("");
+  const user = getClientUser()
+  const [fullname, setfullname] = useState(user.fullname);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState(user.email);
+  const [role, setRole  ] = useState(user.email);
+  const [phone, setPhone] = useState(user.phone);
+  const [passwordError,setPasswordError] = useState(false)
+  const [loading,setloading] = useState(false)
 
-  const handleFullName = (event) => {
-    setFullName(event.target.value);
+  const handlefullname = (event) => {
+    setfullname(event.target.value);
   };
 
 
@@ -22,6 +29,10 @@ const Settings = () => {
     setConfirmPassword(event.target.value);
   };
 
+  const handleRoleChange = (event) => {
+    setRole(event.target.value);
+  };
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -30,8 +41,29 @@ const Settings = () => {
     setPhone(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setloading(true)
+    setPasswordError(false)
+    let payload = {
+      fullname,
+      password,
+      email,
+      role,
+      phone,
+      id: getClientUser()._id
+    }
+    if(password!==confirmPassword){
+      setPasswordError(true)
+      setloading(false)
+      return
+    }
+   await  userOBJ.update_user(payload).then(res=>{
+    if(res.status){
+      toast.success("Settings saved");
+      setloading(false)
+    }
+   })
     // Handle form submission here
   };
   return (
@@ -44,8 +76,8 @@ const Settings = () => {
         <input
           type="text"
           id="full-name"
-          value={fullName}
-          onChange={handleFullName}
+          value={fullname}
+          onChange={handlefullname}
         />
 
         <label htmlFor="password">New Password:</label>
@@ -63,7 +95,7 @@ const Settings = () => {
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
-
+        <small style={{color:'red',margin:'0px 0 10px 0'}}>{passwordError && "Password does not match"}</small>
         <label htmlFor="email">Email:</label>
         <input
           type="email"
@@ -80,7 +112,7 @@ const Settings = () => {
           onChange={handlePhoneChange}
         />
 
-        <button type="submit">Save Changes</button>
+        <button disabled={loading} type="submit">{loading? <Spinner isLoading={loading}/>:"Save Changes"}</button>
       </form>
     </div>
       </div>

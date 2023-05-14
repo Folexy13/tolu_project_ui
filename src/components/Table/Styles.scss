@@ -41,7 +41,7 @@
                     outline: 0;
                 }
                 .modal{
-                    width: 200px !important;
+                    width: 200px;
                     min-height: 200px !important;
                     form{
                         display: flex;
@@ -74,6 +74,12 @@
                             outline: 0;
                             margin: 10px 0;
                         }
+                    }
+                    .flex{
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 17px;
+                        position: relative;
                     }
                 }
 }

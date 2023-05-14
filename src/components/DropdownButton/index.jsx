@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import userOBJ from "../../Classes";
 import { toast } from "react-toastify";
+import Spinner from "../Spinner";
 
-function DropdownButton({ options, data, label,nil }) {
+function DropdownButton({ options, data, label,nil,onClick,loading }) {
   const [isOpen, setIsOpen] = useState(false);
   const [changedStat,setChangedStat]= useState(nil)
+  const [isId,setIsId] = useState('')
   const [selectedOption, setSelectedOption] = useState(null);
   const nav = useNavigate();
   const toggleDropdown = () => {
@@ -33,14 +35,18 @@ function DropdownButton({ options, data, label,nil }) {
         toast.success('Setting saved')
       }
      })
-    } else {
+    } else if(option.value==='view'){
+      setIsId(data._id)
+      onClick(data._id)
+    }
+    else {
       handleDelete(data._id);
     }
   };
   return (
     <div className="dropdown-container">
-      <button className={changedStat==='Pending'?"dropdown-button pending": changedStat==='Approved'?"dropdown-button approved": changedStat==='Not Approved'?"dropdown-button not-approved": changedStat==='Updateable'?"dropdown-button updateable":"dropdown-button"} onClick={toggleDropdown} style={{background:changedStat && 'transaprent'}}>
-        {changedStat?changedStat:label ? label : "Action"}
+      <button disabled={loading && isId} className={changedStat==='Pending'?"dropdown-button pending": changedStat==='Approved'?"dropdown-button approved": changedStat==='Not Approved'?"dropdown-button not-approved": changedStat==='Updateable'?"dropdown-button updateable":"dropdown-button"} onClick={toggleDropdown} style={{background:changedStat && 'transaprent'}}>
+        {loading && isId ? <Spinner isLoading={loading}/> : changedStat?changedStat:label ? label : "Action"}
       </button>
       {isOpen && (
         <ul className="dropdown-options">

@@ -19,6 +19,8 @@ const optionStat = [
 
 const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+  const [stock,setStock] =useState("...")
   const [quantity, setQuantity] = useState(0);
   const [id, setId] = useState("");
   const [loading, setLoading] = useState(false);
@@ -49,6 +51,15 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
       }
     });
   };
+  const handleOpenViewModal =async(val)=>{
+    setLoading(true)
+    const response = await userOBJ.get_stock(val)
+    if(response){
+      setLoading(false)
+      setStock(response.payload)
+      setShow2(!show2)
+    }
+  }
   return (
     <>
       <table className="styled-table" style={{ width }}>
@@ -74,7 +85,7 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
                       <td>{el.quantity}</td>
                       <td>{el.threshold}</td>
                       <td>
-                        <DropdownButton options={options} data={el} />
+                        <DropdownButton options={options} data={el} onClick={handleOpenViewModal} loading={loading}/>
                       </td>
                     </tr>
                   );
@@ -114,7 +125,7 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
                 })}
           </tbody>
         )}
-        <Modal close={!show} onClick={() => setShow(!show)}>
+        <Modal width={200} close={!show} onClick={() => setShow(!show)}>
           <form onSubmit={handleTopUp}>
             <div className="form-control">
               <label htmlFor="name">Quantity</label>
@@ -132,6 +143,38 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
               {loading ? <Spinner loading={loading} /> : "Order now"}
             </button>
           </form>
+        </Modal>
+        <Modal width={500} close={!show2} onClick={() => setShow2(!show2)}>
+          <div className="data-stock">
+          <div className="flex">
+              <p style={{fontWeight:600}}>Name: </p>
+             <p>{stock?.stockName}</p>
+             </div>
+             <div className="flex">
+              <p style={{fontWeight:600}}>Description: </p>
+             <p>{stock?.description}</p>
+             </div>
+             <div className="flex">
+              <p style={{fontWeight:600}}>Type: </p>
+             <p>{stock?.type}</p>
+             </div>
+             <div className="flex">
+              <p style={{fontWeight:600}}>Size: </p>
+             <p>{stock?.size}</p>
+             </div>
+             <div className="flex">
+              <p style={{fontWeight:600}}>Location: </p>
+             <p>{stock?.location}</p>
+             </div>
+             <div className="flex">
+              <p style={{fontWeight:600}}>Quantity: </p>
+             <p>{stock?.quantity}</p>
+             </div>
+             <div className="flex">
+              <p style={{fontWeight:600}}>Threshold: </p>
+             <p>{stock?.threshold}</p>
+             </div>
+          </div>
         </Modal>
       </table>
       {isLoading && <LoadingState />}
@@ -153,85 +196,14 @@ Table.defaultProps = {
   ],
   bodyData: [
     {
-      stockItem: "Nut",
-      quantity: 1,
-      description: "Crystal",
-      collectorName: "Sophia Crystal",
-      issuerName: "Rosalia Crystal",
-      date: "7/21/2022",
+      stockItem: "---",
+      quantity:'---',
+      description: "---",
+      collectorName: "---",
+      issuerName: "----",
+      date: "-----",
     },
-    {
-      stockItem: "Pin",
-      quantity: 2,
-      description: "Ipsly",
-      collectorName: "Mose Ipsly",
-      issuerName: "Dirk Ipsly",
-      date: "12/19/2022",
-    },
-    {
-      stockItem: "Bolt & Nut",
-      quantity: 3,
-      description: "Blemings",
-      collectorName: "Carol-jean Blemings",
-      issuerName: "Haze Blemings",
-      date: "7/10/2022",
-    },
-    {
-      stockItem: "Nut",
-      quantity: 4,
-      description: "Lidyard",
-      collectorName: "Kelsy Lidyard",
-      issuerName: "Nicky Lidyard",
-      date: "2/20/2022",
-    },
-    {
-      stockItem: "Spring",
-      quantity: 5,
-      description: "Mintram",
-      collectorName: "Fey Mintram",
-      issuerName: "Loni Mintram",
-      date: "10/6/2022",
-    },
-    {
-      stockItem: "Bolt",
-      quantity: 6,
-      description: "Pollastrino",
-      collectorName: "Kimbra Pollastrino",
-      issuerName: "Jacynth Pollastrino",
-      date: "7/12/2022",
-    },
-    {
-      stockItem: "Hammer",
-      quantity: 7,
-      description: "Mutter",
-      collectorName: "Cletis Mutter",
-      issuerName: "Jesse Mutter",
-      date: "3/13/2022",
-    },
-    {
-      stockItem: "Spanner",
-      quantity: 8,
-      description: "Starton",
-      collectorName: "Delmor Starton",
-      issuerName: "Ulberto Starton",
-      date: "11/7/2022",
-    },
-    {
-      stockItem: "Nut",
-      quantity: 9,
-      description: "Jewer",
-      collectorName: "Lila Jewer",
-      issuerName: "Gustaf Jewer",
-      date: "12/7/2022",
-    },
-    {
-      stockItem: "Bolt",
-      quantity: 10,
-      description: "Crut",
-      collectorName: "Abbey Crut",
-      issuerName: "Gabie Crut",
-      date: "9/16/2022",
-    },
+   
   ],
 };
 export default Table;
