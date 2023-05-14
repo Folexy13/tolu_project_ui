@@ -19,10 +19,10 @@ const Login = () => {
       password,
     };
     await UserObj.user_login(payload).then((res) => {
-      console.log(res.status);
       if (res.status) {
         toast.success(res.message);
         window.location.replace("/dashboard");
+        localStorage.setItem('user',JSON.stringify(res.user))
       } else {
         toast.error(res.message);
         setLoading(false);

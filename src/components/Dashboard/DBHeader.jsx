@@ -6,7 +6,9 @@ import userOBJ from "../../Classes";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
+
 import Spinner from "../Spinner";
+import { getClientUser } from "../../utils";
 const DBHeader = () => {
   const { search } = useLocation();
   const [searchParams, setSearchParams] = useState(search.split("=")[1] || "");
@@ -59,8 +61,14 @@ const DBHeader = () => {
             onChange={(e) => setSearchParams(e.target.value)}
           />
         </div>
-        <div className="icon">
+        <div className="icon" style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
           <RxAvatar size={40} style={{ cursor: "pointer" }} />
+          <p style={{margin:0,fontWeight:900}}>
+           {getClientUser().fullname}
+          </p>
+          <p style={{margin:0}}>
+           {getClientUser().role.split('_').join(' ')}
+          </p>
         </div>
       </div>
     </div>

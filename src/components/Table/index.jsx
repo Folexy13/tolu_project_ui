@@ -29,9 +29,11 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
   };
   const handleTopUp = async (e) => {
     e.preventDefault();
+    setLoading(true)
     const payload = {
       id,
-      quantity,
+      field:quantity,
+      type:'Update Stock'
     };
     userOBJ.update_stock(payload).then((res) => {
       if (res.status) {
@@ -126,9 +128,8 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
             <button
               disabled={loading}
               type="submit"
-              onClick={() => setLoading(true)}
             >
-              {loading ? <Spinner loading={loading} /> : "Order now now"}
+              {loading ? <Spinner loading={loading} /> : "Order now"}
             </button>
           </form>
         </Modal>

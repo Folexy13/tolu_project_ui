@@ -30,6 +30,7 @@ const Register = () => {
     };
     await userOBJ.user_signup(payload).then((res) => {
       if (res.status) {
+        localStorage.setItem('user',JSON.stringify({...payload,password:undefined}))
         toast.success(res.message);
         navigate("/dashboard");
       } else {

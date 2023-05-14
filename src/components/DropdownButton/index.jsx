@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 function DropdownButton({ options, data, label,nil }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [changedStat,setChangedStat]= useState(nil)
   const [selectedOption, setSelectedOption] = useState(null);
   const nav = useNavigate();
   const toggleDropdown = () => {
@@ -28,18 +29,18 @@ function DropdownButton({ options, data, label,nil }) {
       }
      await userOBJ.update_status(payload).then(res=>{
       if(res.status){
-        window.location.reload()
+        setChangedStat(option.value)
+        toast.success('Setting saved')
       }
      })
     } else {
       handleDelete(data._id);
     }
   };
-
   return (
     <div className="dropdown-container">
-      <button className="dropdown-button" onClick={toggleDropdown} style={{background:nil && 'transaprent'}}>
-        {label ? label :nil?nil: "Action"}
+      <button className={changedStat==='Pending'?"dropdown-button pending": changedStat==='Approved'?"dropdown-button approved": changedStat==='Not Approved'?"dropdown-button not-approved": changedStat==='Updateable'?"dropdown-button updateable":"dropdown-button"} onClick={toggleDropdown} style={{background:changedStat && 'transaprent'}}>
+        {changedStat?changedStat:label ? label : "Action"}
       </button>
       {isOpen && (
         <ul className="dropdown-options">

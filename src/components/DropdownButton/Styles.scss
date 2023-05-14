@@ -10,6 +10,22 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    &.pending{
+         background-color: gray;
+         color: #fff;
+    }
+    &.approved{
+        background-color: green;
+        color: #fff;
+   }
+   &.not-approved{
+    background-color: red;
+    color: #fff;
+}
+&.updateable{
+    background-color: magenta;
+    color: #fff;
+}
 
     &:hover {
         background-color: rgba(165, 42, 42, 0.466);

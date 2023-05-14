@@ -12,7 +12,8 @@ import {
 } from "./Pages/Private";
 import ProtectedPages from "./utils/protectedPage";
 import ErrorBoundary from "./utils/ErrorBoundary";
-
+import { getClientUser } from "./utils";
+console.log(getClientUser())
 const AppRoute = () => {
   return (
     <BrowserRouter>
