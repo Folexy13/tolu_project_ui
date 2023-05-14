@@ -20,7 +20,7 @@ function DropdownButton({ options, data, label,nil }) {
     setIsOpen(false);
     if (option.value === "request") {
       nav(ROUTES.REQUEST + "/" + data._id, { state: data });
-    } else if (option.value === "Pending" || option.value === "Successful" ||option.value === "Rejected") {
+    } else if (option.value === "Pending" || option.value === "Approved" ||option.value === "Not Approved" || option.value === "Updateable") {
       let payload = {
         id: data._id,
         type:'status',

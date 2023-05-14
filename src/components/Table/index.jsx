@@ -12,8 +12,9 @@ const options = [
 ];
 const optionStat = [
   { label: "Pending", value: "Pending" },
-  { label: "Successful", value: "Successful" },
-  { label: "Rejected", value: "Rejected" },
+  { label: "Approved", value: "Approved" },
+  { label: "Not Approved", value: "Not Approved" },
+  { label: "Updateable", value: "Updateable" },
 ];
 
 const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
@@ -90,7 +91,7 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
                           className="btn"
                           onClick={() => handleSelect(el?._id)}
                         >
-                          Top Up
+                          Order now
                         </button>
                       </td>
                     </tr>
@@ -127,7 +128,7 @@ const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
               type="submit"
               onClick={() => setLoading(true)}
             >
-              {loading ? <Spinner loading={loading} /> : "Top up now"}
+              {loading ? <Spinner loading={loading} /> : "Order now now"}
             </button>
           </form>
         </Modal>
