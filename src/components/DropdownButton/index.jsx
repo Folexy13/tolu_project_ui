@@ -23,7 +23,7 @@ function DropdownButton({ options, data, label,nil,onClick,loading }) {
     setIsOpen(false);
     if (option.value === "request") {
       nav(ROUTES.REQUEST + "/" + data._id, { state: data });
-    } else if (option.value === "Pending" || option.value === "Approved" ||option.value === "Not Approved" || option.value === "Updateable") {
+    } else if (option.value === "Pending" || option.value === "Approved" ||option.value === "Not Approved" ) {
       let payload = {
         id: data._id,
         type:'status',

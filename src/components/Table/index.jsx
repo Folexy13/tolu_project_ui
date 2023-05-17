@@ -14,7 +14,7 @@ const optionStat = [
   { label: "Pending", value: "Pending" },
   { label: "Approved", value: "Approved" },
   { label: "Not Approved", value: "Not Approved" },
-  { label: "Updateable", value: "Updateable" },
+  // { label: "Updateable", value: "Updateable" },
 ];
 
 const Table = ({ width, headData, bodyData, isLoading, type, isEmpty }) => {
