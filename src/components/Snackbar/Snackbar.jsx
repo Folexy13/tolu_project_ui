@@ -57,7 +57,7 @@ function CustomSnackbar({ messages }) {
             severity="error"
             style={{ fontSize: "20px" }}
           >
-            {`There are ${data.length} item that needs to be re-stocked. `}
+            {`There are ${data.length} items that need to be re-stocked. `}
             <Link style={{ color: "blue" }} to={ROUTES.INVENTORY}>
               Check them out
             </Link>
